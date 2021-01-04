@@ -1,0 +1,74 @@
+<html>
+<head>
+    <style>
+        input[type=text], select {
+          width: 20%;
+          padding: 5px 5px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        
+        input[type=button] {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 5px 5px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        input[type=button]:hover {
+          background-color: #45a049;
+        }
+        
+        div {
+          border-radius: 5px;         
+          background-color: #f2f2f2;
+          padding: 6px;
+        }
+        body {
+          border-radius: 5px;         
+          padding: 6px;
+        }
+        .title{
+            text-align: center;
+            box-sizing: border-box;
+        }
+        </style>
+</head>
+<body>
+    <h4 class='title'>Give me Lyrics.</h4>
+    <form class='title'>
+       
+        <div>
+            <label >Search songs based on artist name or song title words.</label><br>                      
+            <input id="searchItem" type="text" placeholder="enter artist or song title...">
+            <button id="search" type="button">Search</button>
+        </div>       
+    </form>
+
+    <div class='title' id = "searchInfo" ></div><br>    
+    <div class='title' id = "songsList">Song suggestions will be displayed here.</div><br>
+    <div class="title" id = "paginationFooter"></div>
+    
+    <script type="module" >
+        import {getNext, getSongLyrics,getSongSuggestions  } from  './lyrics/manager.js';
+        window.onload = function () {           
+            document.getElementById("search").onclick = function callApi() {      
+                let searchItem  = document.getElementById("searchItem").value;                 
+                if(searchItem === '')                {
+                    alert('Kindly provide input');  
+                }else{
+                    getSongSuggestions(searchItem);                               
+                }
+            } 
+        }
+      
+    </script>
+</body>
+</html>
